@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovlaqulov's Academy - IELTS Listening Test</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #f8fafc;
+            --accent: #2563eb;
+            --text: #1e293b;
+            --border: #cbd5e1;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 22px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        /* Asosiy Full Audio pleer Bloki */
+        .audio-container {
+            background: #1e293b;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .audio-container h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #38bdf8;
+        }
+        audio {
+            width: 100%;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .nav-tab {
+            padding: 10px 20px;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #475569;
+            transition: 0.3s;
+        }
+        .nav-tab.active {
+            background-color: var(--accent);
+            color: white;
+        }
+        .section-content {
+            display: none;
+        }
+        .section-content.active {
+            display: block;
+        }
+        .card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+        }
+        h3 {
+            color: #334155;
+            margin: 15px 0 10px 0;
+            font-size: 17px;
+        }
+        p {
+            margin-bottom: 12px;
+        }
+        input[type="text"] {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            width: 140px;
+            margin: 0 4px;
+        }
+        .btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: block;
+            margin: 30px auto 0 auto;
+            width: 100%;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .timer {
+            font-size: 16px;
+            font-weight: bold;
+            background: #ef4444;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+        #result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f1f5f9;
+            border-left: 5px solid #10b981;
+            border-radius: 6px;
+            display: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎓 Ovlaqulov's Academy - IELTS Listening</h1>
+        <div class="timer">⏱️ <span id="countdown">30:00</span></div>
+    </header>
+
+    <div class="container">
+        
+        <!-- BUTUN TEST UCHUN BITTA FULL AUDIO PLEER -->
+        <div class="audio-container">
+            <h3>🎧 Full Listening Audio (26 daqiqa)</h3>
+            <audio controls>
+                <!-- O'zingizning full audio fayl nomingizni shu yerga yozing -->
+                <source src="full_listening.mp3" type="audio/mp3">
+                Brauzeringiz audioni qo'llab-quvvatlamaydi.
+            </audio>
+        </div>
+
+        <!-- Bo'limlararo o'tish tugmalari -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab(event, 'sec1')">Section 1</button>
+            <button class="nav-tab" onclick="switchTab(event, 'sec2')">Section 2</button>
+            <button class="nav-tab" onclick="switchTab(event, 'sec3')">Section 3</button>
+            <button class="nav-tab" onclick="switchTab(event, 'sec4')">Section 4</button>
+        </div>
+
+        <form id="quiz-form" onsubmit="checkAnswers(event)">
+            <!-- ================= SECTION 1 ================= -->
+            <div id="sec1" class="section-content active">
+                <h2>SECTION 1 (Questions 1–10)</h2>
+                <div class="card">
+                    <h3>Beach Heads Travel Customer Request Sheet</h3>
+                    <p><b>Name:</b> Duncan White | <b>Group details:</b> three adults and two children</p>
+                    <p><b>1. Date of arrival:</b> <input type="text" id="q1" placeholder="1. ..."> (staying for 2 weeks)</p>
+                    
+                    <p style="margin-top: 15px;"><b>Week One Accommodation:</b></p>
+                    <p><b>2. Book a:</b> <input type="text" id="q2" placeholder="2. ..."> on the beach</p>
+                    <p><b>3. Budget around:</b> <input type="text" id="q3" placeholder="3. ..."> a night</p>
+                    
+                    <p style="margin-top: 15px;"><b>Activities:</b></p>
+                    <p><b>4. Children want to go:</b> <input type="text" id="q4" placeholder="4. ..."> | <b>5. Have a:</b> <input type="text" id="q5" placeholder="5. ..."></p>
+                    <p><b>6. Susan & Jenny play:</b> <input type="text" id="q6" placeholder="6. ..."></p>
+                    <p><b>7. Duncan wants to go:</b> <input type="text" id="q7" placeholder="7. ..."></p>
+                    
+                    <p style="margin-top: 15px;"><b>Week Two:</b></p>
+                    <p><b>8. Accommodation:</b> <input type="text" id="q8" placeholder="8. ..."> ($100 per night)</p>
+                    <p><b>9. Arrange a:</b> <input type="text" id="q9" placeholder="9. ..."> for Jenny</p>
+                    <p><b>10. Send Duncan a:</b> <input type="text" id="q10" placeholder="10. ..."> for Marco's</p>
+                </div>
+            </div>
+
+            <!-- ================= SECTION 2 ================= -->
+            <div id="sec2" class="section-content">
+                <h2>SECTION 2 (Questions 11–20)</h2>
+                <div class="card">
+                    <h3>How to use City Cycle</h3>
+                    <p><b>11. Select bike by:</b> <input type="text" id="q11" placeholder="11. A-I"> <small>(Options: A-I)</small></p>
+                    <p><b>12. Release bike by:</b> <input type="text" id="q12" placeholder="12. ..."></p>
+                    <p><b>13. Remove from:</b> <input type="text" id="q13" placeholder="13. ..."></p>
+                    <p><b>14. Make sure you have:</b> <input type="text" id="q14" placeholder="14. ..."></p>
+                    <p><b>15. Return confirmation:</b> <input type="text" id="q15" placeholder="15. ..."></p>
+
+                    <h3 style="margin-top: 25px;">Bicycle Centre Plan (Questions 16–20)</h3>
+                    <p><b>16. Coffee cart:</b> <input type="text" id="q16" placeholder="A-H"></p>
+                    <p><b>17. Workshop:</b> <input type="text" id="q17" placeholder="A-H"></p>
+                    <p><b>18. Lockers:</b> <input type="text" id="q18" placeholder="A-H"></p>
+                    <p><b>19. Showers:</b> <input type="text" id="q19" placeholder="A-H"></p>
+                    <p><b>20. Towel:</b> <input type="text" id="q20" placeholder="A-H"></p>
+                </div>
+            </div>
+
+            <!-- ================= SECTION 3 ================= -->
+            <div id="sec3" class="section-content">
+                <h2>SECTION 3 (Questions 21–30)</h2>
+                <div class="card">
+                    <h3>Products using renewable energy</h3>
+                    <p><b>21. Kites wind power in:</b> <input type="text" id="q21" placeholder="21. ..."></p>
+                    <p><b>22. Sports car power source:</b> <input type="text" id="q22" placeholder="22. ..."></p>
+                    <p><b>23. Ethanol stoves less likely to:</b> <input type="text" id="q23" placeholder="23. ..."></p>
+
+                    <h3 style="margin-top: 25px;">Survey Participants & MCQs (24–30)</h3>
+                    <p><b>24-25. Choose TWO:</b> <input type="text" id="q24" placeholder="24-25" style="width: 100px;"> <small>(Masalan: a, e)</small></p>
+                    <p><b>26. Knowledge:</b> <input type="text" id="q26" placeholder="A, B or C"></p>
+                    <p><b>27. Traditional energy:</b> <input type="text" id="q27" placeholder="A, B or C"></p>
+                    <p><b>28. Nuclear power:</b> <input type="text" id="q28" placeholder="A, B or C"></p>
+                    <p><b>29. Cost:</b> <input type="text" id="q29" placeholder="A, B or C"></p>
+                    <p><b>30. Modern windmills:</b> <input type="text" id="q30" placeholder="A, B or C"></p>
+                </div>
+            </div>
+
+            <!-- ================= SECTION 4 ================= -->
+            <div id="sec4" class="section-content">
+                <h2>SECTION 4 (Questions 31–40)</h2>
+                <div class="card">
+                    <h3>Absence from work</h3>
+                    <p><b>31. The:</b> <input type="text" id="q31" placeholder="31. ..."></p>
+                    <p><b>32. Employees':</b> <input type="text" id="q32" placeholder="32. ..."></p>
+                    <p><b>33. The:</b> <input type="text" id="q33" placeholder="33. ..."></p>
+                    <p><b>34. Type of work in:</b> <input type="text" id="q34" placeholder="34. ..."></p>
+                    <p><b>35. The:</b> <input type="text" id="q35" placeholder="35. ..."></p>
+
+                    <h3 style="margin-top: 25px;">Public versus Private sector</h3>
+                    <p><b>36. Less:</b> <input type="text" id="q36" placeholder="36. ..."></p>
+                    <p><b>37. Because of:</b> <input type="text" id="q37" placeholder="37. ..."></p>
+                    <p><b>38. Have a:</b> <input type="text" id="q38" placeholder="38. ..."></p>
+                    <p><b>39. Provide:</b> <input type="text" id="q39" placeholder="39. ..."></p>
+                    <p><b>40. Less likely to:</b> <input type="text" id="q40" placeholder="40. ..."></p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Javoblarni tekshirish va natijani ko'rish</button>
+        </form>
+
+        <div id="result-box"></div>
+    </div>
+
+    <script>
+        function switchTab(evt, tabId) {
+            let contents = document.getElementsByClassName("section-content");
+            for (let c of contents) { c.classList.remove("active"); }
+            let tabs = document.getElementsByClassName("nav-tab");
+            for (let t of tabs) { t.classList.remove("active"); }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function checkAnswers(event) {
+            event.preventDefault();
+            
+            const correctAnswers = {
+                q1: "october 15",
+                q2: "hotel",
+                q3: "175",
+                q4: "sailing",
+                q5: "class",
+                q6: "golf",
+                q7: "fishing",
+                q8: "caravan",
+                q9: "massage",
+                q10: "menu",
+                q11: "h",
+                q12: "a",
+                q13: "g",
+                q14: "c",
+                q15: "d",
+                q16: "e",
+                q17: "f",
+                q18: "a",
+                q19: "h",
+                q20: "b",
+                q21: "weather",
+                q22: "electricity",
+                q23: "explode",
+                q24: "a, e",
+                q26: "a",
+                q27: "b",
+                q28: "c",
+                q29: "a",
+                q30: "b",
+                q31: "gender",
+                q32: "attitude",
+                q33: "culture",
+                q34: "industry",
+                q35: "size",
+                q36: "efficient",
+                q37: "external",
+                q38: "larger",
+                q39: "benefits",
+                q40: "dismiss"
+            };
+
+            let correctCount = 0;
+            let totalQuestions = 40;
+
+            for (let key in correctAnswers) {
+                let userVal = document.getElementById(key).value.trim().toLowerCase();
+                if (key === "q24") {
+                    let cleanUser = userVal.replace(/\s+/g, '');
+                    let cleanCorrect = correctAnswers[key].replace(/\s+/g, '');
+                    if (cleanUser === cleanCorrect) {
+                        correctCount++;
+                    }
+                } else {
+                    if (userVal === correctAnswers[key]) {
+                        correctCount++;
+                    }
+                }
+            }
+
+            let incorrectCount = totalQuestions - correctCount;
+            let percentage = Math.round((correctCount / totalQuestions) * 100);
+
+            let resultBox = document.getElementById("result-box");
+            resultBox.style.display = "block";
+            resultBox.innerHTML = `🎯 Natijangiz:<br>
+                ✅ To'g'ri javoblar: ${correctCount} ta<br>
+                ❌ Noto'g'ri javoblar: ${incorrectCount} ta<br>
+                📊 Foiz ko'rsatkichi: ${percentage}%`;
+            
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
